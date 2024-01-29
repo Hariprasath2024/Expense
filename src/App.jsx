@@ -7,6 +7,7 @@ import IncomeExp from './Components/IncomeExp'
 import TransactionList from './Components/TransactionList'
 
 function App() {
+  //Main initial data
   const initialState = {
     transaction: [
       { id: 1, text: 'Flower', amount: -20 },
@@ -16,13 +17,17 @@ function App() {
     ],
   }
 
+
+  //used useState for updateing and passing props for other components
   const [transactions, setTransaction] = useState(initialState.transaction);
 
+  //function for delete transaction card using ID in History
   function deleteTransaction(id){
     const updatedTransactions = transactions.filter(transaction => transaction.id !== id);
     setTransaction(updatedTransactions);
   }
   
+  //function for adding transaction card using text and amount as parameter from the user and id generate with random function [1-1000000] number in History
   function addTransaction(text, amount) {
     const newTransaction = {
       id: Math.floor(Math.random() * 1000000),
@@ -35,6 +40,7 @@ function App() {
 
   return (
     <>
+      {/* List of components and props(State,functions) are passed */}
       <Header />
       <Balance transactions={ transactions} />
       <IncomeExp transactions={ transactions} />
@@ -45,3 +51,4 @@ function App() {
 }
 
 export default App
+// Additonally add some modules and add favicon and title heading in index.html and upload it in GitHub....
